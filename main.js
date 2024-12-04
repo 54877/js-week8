@@ -202,12 +202,12 @@ function chartInit(res) {
          orderInfoInput.forEach(iteam => {   
              formValue.push(iteam.value)
             });
-            console.log(formValue)
          if(formValue.filter(iteam=> iteam=="").length>0){
             formValue = [];
             alert("請正確填寫")
             return;
          }   
+         const  date = new Date()
          axios.post(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${api_path}/orders
      `,{
                  "data": {
@@ -217,7 +217,7 @@ function chartInit(res) {
                          "email": formValue[2],
                          "address": formValue[3],
                          "payment": formValue[4]
-                     }
+                     },
                  }
          })
           .then(res=>{
@@ -228,8 +228,7 @@ function chartInit(res) {
               orderInfoInput[1].value = ""
               orderInfoInput[2].value = ""
               orderInfoInput[3].value = ""
-              orderInfoInput[4].value = "ATM"
-             
+              orderInfoInput[4].value = "ATM" 
           })
           .catch(err=>{
               formValue = [];
@@ -238,29 +237,3 @@ function chartInit(res) {
      })
  }
 
-//後台data 取得
-//   axios.get(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders`, {
-//       headers: {
-//           authorization: "t2cMK7akXXP629pP931BTAyGPf62"
-//       }
-//   })
-//       .then(res => {
-//           console.log(res.data)
-//       })
-//       .catch(err => {
-//           console.log("失敗取得", err)
-//       })
-
-//刪除後台data
-//  axios.delete(`https://livejs-api.hexschool.io/api/livejs/v1/admin/${api_path}/orders`, {
-//      headers: {
-//          authorization: "t2cMK7akXXP629pP931BTAyGPf62"
-//      }
-//  })
-//      .then(res => {
-//          console.log(res.data)
-//          console.log("成功取得")
-//      })
-//      .catch(err => {
-//          console.log("失敗取得", err)
-//      })
